@@ -79,3 +79,5 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
 >>>>>>> 58157bea1348f267957789f4cf20c4090d267af6
+
+\.idea/vcs\.xml
