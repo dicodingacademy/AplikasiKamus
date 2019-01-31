@@ -27,13 +27,13 @@ import static com.dicoding.picodiploma.kamus.services.DataManagerService.SUCCESS
 import static com.dicoding.picodiploma.kamus.services.DataManagerService.UPDATE_MESSAGE;
 
 public class MainActivity extends AppCompatActivity implements HandlerCallback{
-    ProgressBar progressBar;
-    Messenger mActivityMessenger;
+    private ProgressBar progressBar;
+    private Messenger mActivityMessenger;
 
-    Messenger mBoundService;
-    boolean mServiceBound;
-    LinearLayout layout;
-    TextView tvStatus;
+    private Messenger mBoundService;
+    private boolean mServiceBound;
+    private LinearLayout layout;
+    private TextView tvStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
     /*
      Service Connection adalah interface yang digunakan untuk menghubungkan antara boundservice dengan activity
       */
-    private ServiceConnection mServiceConnection = new ServiceConnection() {
+    private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
     @Override
     public void onPreparation() {
         layout.setVisibility(View.VISIBLE);
-        tvStatus.setText("Memuat Kata Indonesia & Inggris");
+        tvStatus.setText(R.string.loading_text);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
 
     private static class IncomingHandler extends Handler {
 
-        WeakReference<HandlerCallback> weakCallback;
+        final WeakReference<HandlerCallback> weakCallback;
 
         IncomingHandler(HandlerCallback callback) {
             weakCallback = new WeakReference<>(callback);

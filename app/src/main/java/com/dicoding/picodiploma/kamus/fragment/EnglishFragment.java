@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.dicoding.picodiploma.kamus.R;
 import com.dicoding.picodiploma.kamus.adapter.WordAdapter;
@@ -21,9 +24,6 @@ import java.util.ArrayList;
  */
 public class EnglishFragment extends Fragment {
 
-    RecyclerView rv_eng;
-    WordAdapter wordAdapter;
-    WordHelper wordHelper;
     public EnglishFragment() {
         // Required empty public constructor
     }
@@ -35,10 +35,27 @@ public class EnglishFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_english, container, false);
 
-        rv_eng = view.findViewById(R.id.rv_eng);
+        RecyclerView rv_eng = view.findViewById(R.id.rv_eng);
+        EditText edt_english = view.findViewById(R.id.edt_english);
+        final WordHelper wordHelper = new WordHelper(getActivity());
+        final WordAdapter wordAdapter = new WordAdapter(getActivity());
+        edt_english.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        wordHelper = new WordHelper(getActivity());
-        wordAdapter = new WordAdapter();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                wordAdapter.filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         rv_eng.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         rv_eng.setAdapter(wordAdapter);

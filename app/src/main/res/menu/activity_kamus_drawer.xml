@@ -7,11 +7,11 @@
         <item
             android:id="@+id/indonesia"
             android:icon="@drawable/ic_text"
-            android:title="Indonesia To English" />
+            android:title="@string/indonesia_to_english" />
         <item
             android:id="@+id/english"
             android:icon="@drawable/ic_text"
-            android:title="English To Indonesia" />
+            android:title="@string/english_to_indonesia" />
     </group>
 
 </menu>

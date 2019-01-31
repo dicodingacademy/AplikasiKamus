@@ -19,7 +19,7 @@ import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_IND
 
 public class WordHelper {
 
-    private DatabaseHelper databaseHelper;
+    private final DatabaseHelper databaseHelper;
     private static WordHelper INSTANCE;
     private SQLiteDatabase database;
 

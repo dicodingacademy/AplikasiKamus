@@ -15,16 +15,16 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class LoadDataAsync extends AsyncTask<Void,Integer, Boolean> {
+class LoadDataAsync extends AsyncTask<Void,Integer, Boolean> {
 
     private final String TAG = LoadDataAsync.class.getSimpleName();
-    private WordHelper wordHelper;
-    private AppPreference appPreference;
-    private WeakReference<LoadDataCallback> weakCallback;
-    private WeakReference<Resources> weakResources;
-    double progress;
-    double progressEng;
-    double maxprogress = 100;
+    private final WordHelper wordHelper;
+    private final AppPreference appPreference;
+    private final WeakReference<LoadDataCallback> weakCallback;
+    private final WeakReference<Resources> weakResources;
+    private double progress;
+    private double progressEng;
+    private final double maxprogress = 100;
 
     public LoadDataAsync(WordHelper wordHelper, AppPreference appPreference,LoadDataCallback callback, Resources resources) {
         this.wordHelper = wordHelper;
@@ -47,11 +47,11 @@ public class LoadDataAsync extends AsyncTask<Void,Integer, Boolean> {
             ArrayList<WordModel> wordModelsEng = preLoadRawEng();
 
             wordHelper.open();
-            progress = 30;
-            progressEng = 30;
+            progress = 0;
+            progressEng = 0;
             publishProgress((int) progress);
             publishProgress((int) progressEng);
-            Double progressMaxInsert = 80.0;
+            Double progressMaxInsert = 100.0;
             Double progressDiff = (progressMaxInsert - progress) / wordModels.size();
             Double progressDiffEng = (progressMaxInsert - progressEng) / wordModelsEng.size();
 
@@ -61,7 +61,6 @@ public class LoadDataAsync extends AsyncTask<Void,Integer, Boolean> {
                 wordHelper.beginTransaction();
 
                 for (WordModel model : wordModels) {
-                    //Jika service atau activity dalam keadaan destroy maka akan menghentikan perulangan
                     if (isCancelled()) {
                         break;
                     } else {
@@ -71,13 +70,12 @@ public class LoadDataAsync extends AsyncTask<Void,Integer, Boolean> {
                     }
                 }
 
-                //Jika service atau activity dalam keadaan destroy maka data insert tidak di essekusi
                 if (isCancelled()) {
                     isInsertSuccess = false;
                     appPreference.setFirstRun(true);
                     weakCallback.get().onLoadCancel();
                 } else {
-                    // Jika semua proses telah di set success maka akan di commit ke database
+                    // Jika proses insert indo telah selesai, selanjut nya insert english data
                     for (WordModel model : wordModelsEng) {
                         if (isCancelled()) {
                             break;

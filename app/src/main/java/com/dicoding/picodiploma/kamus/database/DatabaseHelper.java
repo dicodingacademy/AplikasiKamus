@@ -10,17 +10,17 @@ import static com.dicoding.picodiploma.kamus.database.DatabaseContract.KataColum
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_ENGLISH;
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_INDO;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String DATABASE_NAME = "dbkata";
+    private static final String DATABASE_NAME = "dbkata";
     private static final int DATABASE_VERSION = 1;
 
-    private static String CREATE_TABLE_INDO = "create table " + TABLE_INDO +
+    private static final String CREATE_TABLE_INDO = "create table " + TABLE_INDO +
             " (" + _ID + " integer primary key autoincrement, " +
             WORD + " text not null, " +
             DESCRIPTION + " text not null);";
 
-    private static String CREATE_TABLE_ENGLISH = "create table " + TABLE_ENGLISH +
+    private static final String CREATE_TABLE_ENGLISH = "create table " + TABLE_ENGLISH +
             " (" + _ID + " integer primary key autoincrement, " +
             WORD + " text not null, " +
             DESCRIPTION + " text not null);";

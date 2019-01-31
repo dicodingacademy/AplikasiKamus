@@ -1,16 +1,15 @@
 package com.dicoding.picodiploma.kamus.database;
 
-import android.os.Parcelable;
 import android.provider.BaseColumns;
 
-public class DatabaseContract {
+class DatabaseContract {
 
-    static String TABLE_INDO = "table_indo";
-    static String TABLE_ENGLISH = "table_kata";
+    static final String TABLE_INDO = "table_indo";
+    static final String TABLE_ENGLISH = "table_kata";
 
     static final class KataColumns implements BaseColumns {
-        static String WORD = "kata";
-        static String DESCRIPTION = "deskripsi";
+        static final String WORD = "kata";
+        static final String DESCRIPTION = "deskripsi";
     }
 
 }

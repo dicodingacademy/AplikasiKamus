@@ -54,7 +54,7 @@ public class WordModel implements Parcelable {
     public WordModel() {
     }
 
-    protected WordModel(Parcel in) {
+    private WordModel(Parcel in) {
         this.id = in.readInt();
         this.word = in.readString();
         this.descrition = in.readString();

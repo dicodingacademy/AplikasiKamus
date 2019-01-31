@@ -1,5 +1,7 @@
 package com.dicoding.picodiploma.kamus.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dicoding.picodiploma.kamus.DetailActivity;
 import com.dicoding.picodiploma.kamus.R;
 import com.dicoding.picodiploma.kamus.model.WordModel;
 
@@ -14,9 +17,12 @@ import java.util.ArrayList;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
 
-    private ArrayList<WordModel> listWord = new ArrayList<>();
+    private final ArrayList<WordModel> listWord = new ArrayList<>();
+    private final Context context;
+    private final ArrayList<WordModel> baseList = new ArrayList<>();
 
-    public WordAdapter() {
+    public WordAdapter(Context context) {
+        this.context = context;
     }
 
     public void setData(ArrayList<WordModel> listWord) {
@@ -26,6 +32,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
         }
 
         this.listWord.addAll(listWord);
+        this.baseList.addAll(listWord);
 
         notifyDataSetChanged();
     }
@@ -38,8 +45,34 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
         holder.txtWord.setText(listWord.get(i).getWord());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String word = listWord.get(i).getWord();
+                String description = listWord.get(i).getDescrition();
+                WordModel wordModel = new WordModel(word,description);
+                Intent i = new Intent(context, DetailActivity.class);
+                i.putExtra("word",wordModel);
+                context.startActivity(i);
+            }
+        });
+    }
+
+    public void filter(String text) {
+        listWord.clear();
+        if(text.isEmpty()){
+            listWord.addAll(baseList);
+        } else{
+            text = text.toLowerCase();
+            for(WordModel item: baseList){
+                if(item.getWord().toLowerCase().contains(text)){
+                    listWord.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -58,11 +91,10 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtWord;
+        private final TextView txtWord;
 
         ViewHolder(View itemView) {
             super(itemView);
-
             txtWord = itemView.findViewById(R.id.txt_word);
         }
     }
