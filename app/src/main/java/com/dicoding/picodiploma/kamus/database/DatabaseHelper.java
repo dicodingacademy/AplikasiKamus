@@ -8,14 +8,14 @@ import static android.provider.BaseColumns._ID;
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.KataColumns.DESCRIPTION;
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.KataColumns.WORD;
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_ENGLISH;
-import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_INDO;
+import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_INDONESIA;
 
 class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "dbkata";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "db_dictionary";
+    private static final int DATABASE_VERSION = 2;
 
-    private static final String CREATE_TABLE_INDO = "create table " + TABLE_INDO +
+    private static final String CREATE_TABLE_INDO = "create table " + TABLE_INDONESIA +
             " (" + _ID + " integer primary key autoincrement, " +
             WORD + " text not null, " +
             DESCRIPTION + " text not null);";
@@ -39,15 +39,15 @@ class DatabaseHelper extends SQLiteOpenHelper {
      *  Method onUpgrade akan di panggil ketika terjadi perbedaan versi
      *  Gunakan method onUpgrade untuk melakukan proses migrasi data
      * @param db
-     * @param i
-     * @param i1
+     * @param oldVersion
+     * @param newVersion
      */
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         /*
         Drop table tidak dianjurkan ketika proses migrasi terjadi dikarenakan data user akan hilang,
          */
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_INDO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_INDONESIA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENGLISH);
         onCreate(db);
     }

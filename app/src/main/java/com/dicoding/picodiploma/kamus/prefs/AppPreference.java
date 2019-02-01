@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 
 public class AppPreference {
 
-    private static final String PREFS_NAME = "KamusPref";
+    private static final String PREFS_NAME = "pref_dictionary";
     private static final String APP_FIRST_RUN = "app_first_run";
     private final SharedPreferences prefs;
 

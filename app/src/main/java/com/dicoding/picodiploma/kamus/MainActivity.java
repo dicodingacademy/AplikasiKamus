@@ -26,12 +26,9 @@ import static com.dicoding.picodiploma.kamus.services.DataManagerService.PREPARA
 import static com.dicoding.picodiploma.kamus.services.DataManagerService.SUCCESS_MESSAGE;
 import static com.dicoding.picodiploma.kamus.services.DataManagerService.UPDATE_MESSAGE;
 
-public class MainActivity extends AppCompatActivity implements HandlerCallback{
+public class MainActivity extends AppCompatActivity implements HandlerCallback {
     private ProgressBar progressBar;
-    private Messenger mActivityMessenger;
 
-    private Messenger mBoundService;
-    private boolean mServiceBound;
     private LinearLayout layout;
     private TextView tvStatus;
 
@@ -39,12 +36,12 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progress_bar);
         layout = findViewById(R.id.loading);
-        tvStatus = findViewById(R.id.tvStatus);
+        tvStatus = findViewById(R.id.tv_status);
 
         Intent mBoundServiceIntent = new Intent(MainActivity.this, DataManagerService.class);
-        mActivityMessenger = new Messenger(new IncomingHandler(this));
+        Messenger mActivityMessenger = new Messenger(new IncomingHandler(this));
         mBoundServiceIntent.putExtra(DataManagerService.ACTIVITY_HANDLER, mActivityMessenger);
 
         bindService(mBoundServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
@@ -64,13 +61,11 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            mServiceBound = false;
         }
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mBoundService = new Messenger(service);
-            mServiceBound = true;
+
         }
 
     };
@@ -83,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
 
     @Override
     public void updateProgress(long progress) {
-        Log.d("PROGRESS", "updateProgress: " + progress);
         progressBar.setProgress((int) progress);
 
     }
@@ -96,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
 
     @Override
     public void loadFailed() {
-        Toast.makeText(this, "Gagal memuat data", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.failed_message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -113,9 +107,6 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
         }
 
         @Override
-
-
-
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case PREPARATION_MESSAGE:

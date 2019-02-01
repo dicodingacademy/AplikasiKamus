@@ -15,7 +15,7 @@ import static android.provider.BaseColumns._ID;
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.KataColumns.DESCRIPTION;
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.KataColumns.WORD;
 import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_ENGLISH;
-import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_INDO;
+import static com.dicoding.picodiploma.kamus.database.DatabaseContract.TABLE_INDONESIA;
 
 public class WordHelper {
 
@@ -55,7 +55,7 @@ public class WordHelper {
      * @return hasil query word model di dalam arraylist
      */
     public ArrayList<WordModel> getAllData() {
-        Cursor cursor = database.query(TABLE_INDO, null, null, null, null, null, _ID + " ASC", null);
+        Cursor cursor = database.query(TABLE_INDONESIA, null, null, null, null, null, _ID + " ASC", null);
         cursor.moveToFirst();
         ArrayList<WordModel> arrayList = new ArrayList<>();
         WordModel wordModel;
@@ -64,7 +64,7 @@ public class WordHelper {
                 wordModel = new WordModel();
                 wordModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 wordModel.setWord(cursor.getString(cursor.getColumnIndexOrThrow(WORD)));
-                wordModel.setDescrition(cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION)));
+                wordModel.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION)));
 
 
                 arrayList.add(wordModel);
@@ -92,7 +92,7 @@ public class WordHelper {
                 wordModel = new WordModel();
                 wordModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 wordModel.setWord(cursor.getString(cursor.getColumnIndexOrThrow(WORD)));
-                wordModel.setDescrition(cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION)));
+                wordModel.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION)));
 
 
                 arrayList.add(wordModel);
@@ -132,11 +132,11 @@ public class WordHelper {
      * @param wordModel inputan wordmodel
      */
     public void insertTransaction(WordModel wordModel) {
-        String sql = "INSERT INTO " + TABLE_INDO + " (" + WORD + ", " + DESCRIPTION
+        String sql = "INSERT INTO " + TABLE_INDONESIA + " (" + WORD + ", " + DESCRIPTION
                 + ") VALUES (?, ?)";
         SQLiteStatement stmt = database.compileStatement(sql);
         stmt.bindString(1, wordModel.getWord());
-        stmt.bindString(2, wordModel.getDescrition());
+        stmt.bindString(2, wordModel.getDescription());
         stmt.execute();
         stmt.clearBindings();
     }
@@ -151,7 +151,7 @@ public class WordHelper {
                 + ") VALUES (?, ?)";
         SQLiteStatement stmt = database.compileStatement(sql);
         stmt.bindString(1, wordModel.getWord());
-        stmt.bindString(2, wordModel.getDescrition());
+        stmt.bindString(2, wordModel.getDescription());
         stmt.execute();
         stmt.clearBindings();
     }

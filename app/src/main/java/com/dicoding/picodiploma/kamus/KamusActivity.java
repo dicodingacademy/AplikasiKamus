@@ -2,11 +2,8 @@ package com.dicoding.picodiploma.kamus;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.dicoding.picodiploma.kamus.fragment.EnglishFragment;
-import com.dicoding.picodiploma.kamus.fragment.IndoFragment;
+import com.dicoding.picodiploma.kamus.fragment.IndonesiaFragment;
 
 public class KamusActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,7 +74,7 @@ public class KamusActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.indonesia) {
-            IndoFragment fragment = new IndoFragment();
+            IndonesiaFragment fragment = new IndonesiaFragment();
             inflateFragment(fragment);
         } else if (id == R.id.english) {
             EnglishFragment fragment = new EnglishFragment();
@@ -90,9 +87,9 @@ public class KamusActivity extends AppCompatActivity
     }
 
     private void inflateFragment(Fragment fragment) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayout, fragment);
-        ft.commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
     }
 
 }

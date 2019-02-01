@@ -36,12 +36,12 @@ public class EnglishFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_english, container, false);
 
-        RecyclerView rv_eng = view.findViewById(R.id.rv_eng);
-        EditText edt_english = view.findViewById(R.id.edt_english);
+        RecyclerView rvEnglish = view.findViewById(R.id.rv_english);
+        EditText etEnglish = view.findViewById(R.id.edt_english);
         final WordHelper wordHelper = new WordHelper(getActivity());
         final WordAdapter wordAdapter = new WordAdapter(getActivity());
 
-        edt_english.addTextChangedListener(new TextWatcher() {
+        etEnglish.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -58,9 +58,9 @@ public class EnglishFragment extends Fragment {
             }
         });
 
-        rv_eng.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvEnglish.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rv_eng.setAdapter(wordAdapter);
+        rvEnglish.setAdapter(wordAdapter);
 
         wordHelper.open();
 

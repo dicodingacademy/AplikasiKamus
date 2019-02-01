@@ -23,21 +23,21 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class IndoFragment extends Fragment {
+public class IndonesiaFragment extends Fragment {
 
-    public IndoFragment() {
+    public IndonesiaFragment() {
     }
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_indo, container, false);
-        RecyclerView rv_indo = view.findViewById(R.id.rv_indo);
-        EditText edt_indo = view.findViewById(R.id.edt_indo);
+        View view = inflater.inflate(R.layout.fragment_indonesia, container, false);
+        RecyclerView rvIndo = view.findViewById(R.id.rv_indo);
+        EditText etIndo = view.findViewById(R.id.edt_indo);
         WordHelper wordHelper = new WordHelper(getActivity());
         final WordAdapter wordAdapter = new WordAdapter(getActivity());
-        edt_indo.addTextChangedListener(new TextWatcher() {
+        etIndo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -55,9 +55,9 @@ public class IndoFragment extends Fragment {
         });
 
 
-        rv_indo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvIndo.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rv_indo.setAdapter(wordAdapter);
+        rvIndo.setAdapter(wordAdapter);
 
         wordHelper.open();
 

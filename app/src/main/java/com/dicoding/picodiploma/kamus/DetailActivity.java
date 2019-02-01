@@ -15,12 +15,12 @@ public class DetailActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        TextView tvWord = findViewById(R.id.tvWord);
-        TextView tvDesc = findViewById(R.id.tvDesc);
+        TextView tvWord = findViewById(R.id.tv_word);
+        TextView tvDescription = findViewById(R.id.tv_description);
 
         WordModel wordModel = getIntent().getParcelableExtra("word");
         tvWord.setText(wordModel.getWord());
-        tvDesc.setText(wordModel.getDescrition());
+        tvDescription.setText(wordModel.getDescription());
     }
     @Override
     public boolean onSupportNavigateUp(){

@@ -7,8 +7,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.dicoding.picodiploma.kamus.database.WordHelper;
 import com.dicoding.picodiploma.kamus.prefs.AppPreference;
@@ -21,7 +19,6 @@ public class DataManagerService extends Service {
     public static final int CANCEL_MESSAGE = 4;
     public static final String ACTIVITY_HANDLER = "activity_handler";
 
-    private final String TAG = DataManagerService.class.getSimpleName();
     private LoadDataAsync loadData;
     private Messenger mActivityMessenger;
 
@@ -33,8 +30,6 @@ public class DataManagerService extends Service {
         AppPreference appPreference = new AppPreference(getApplicationContext());
 
         loadData = new LoadDataAsync(wordHelper, appPreference, myCallback, getResources());
-
-        Log.d(TAG, "onCreate: ");
     }
 
     /***
@@ -44,7 +39,6 @@ public class DataManagerService extends Service {
     public void onDestroy() {
         super.onDestroy();
         loadData.cancel(true);
-        Log.d(TAG, "onDestroy: ");
     }
 
     /***
@@ -68,7 +62,6 @@ public class DataManagerService extends Service {
      */
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.d(TAG, "onUnbind: ");
         loadData.cancel(true);
         return super.onUnbind(intent);
     }
@@ -80,7 +73,6 @@ public class DataManagerService extends Service {
     @Override
     public void onRebind(Intent intent) {
         super.onRebind(intent);
-        Log.d(TAG, "onRebind: ");
     }
 
     private final LoadDataCallback myCallback = new LoadDataCallback() {

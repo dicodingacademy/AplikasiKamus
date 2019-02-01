@@ -7,11 +7,11 @@ public class WordModel implements Parcelable {
 
     private int id;
     private String word;
-    private String descrition;
+    private String description;
 
-    public WordModel(String word, String descrition) {
+    public WordModel(String word, String description) {
         this.word = word;
-        this.descrition = descrition;
+        this.description = description;
     }
 
     public int getId() {
@@ -30,12 +30,12 @@ public class WordModel implements Parcelable {
         this.word = word;
     }
 
-    public String getDescrition() {
-        return descrition;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrition(String descrition) {
-        this.descrition = descrition;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
@@ -48,7 +48,7 @@ public class WordModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.word);
-        dest.writeString(this.descrition);
+        dest.writeString(this.description);
     }
 
     public WordModel() {
@@ -57,7 +57,7 @@ public class WordModel implements Parcelable {
     private WordModel(Parcel in) {
         this.id = in.readInt();
         this.word = in.readString();
-        this.descrition = in.readString();
+        this.description = in.readString();
     }
 
     public static final Creator<WordModel> CREATOR = new Creator<WordModel>() {

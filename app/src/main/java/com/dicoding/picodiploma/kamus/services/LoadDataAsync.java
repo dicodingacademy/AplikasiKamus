@@ -175,16 +175,12 @@ class LoadDataAsync extends AsyncTask<Void, Integer, Boolean> {
             InputStream raw_dict = res.openRawResource(R.raw.indonesia_english);
 
             reader = new BufferedReader(new InputStreamReader(raw_dict));
-            do {
-                //Proses spliting reader dan memasukan ke wordModel
-                line = reader.readLine();
+            while ((line = reader.readLine()) != null) {
                 String[] splitstr = line.split("\t");
 
-                WordModel wordModel;
-
-                wordModel = new WordModel(splitstr[0], splitstr[1]);
+                WordModel wordModel = new WordModel(splitstr[0], splitstr[1]);
                 wordModels.add(wordModel);
-            } while (line != null);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,15 +200,13 @@ class LoadDataAsync extends AsyncTask<Void, Integer, Boolean> {
             InputStream raw_dict = res.openRawResource(R.raw.english_indonesia);
 
             reader = new BufferedReader(new InputStreamReader(raw_dict));
-            do {
-                line = reader.readLine();
+            while ((line = reader.readLine()) != null) {
                 String[] splitstr = line.split("\t");
 
-                WordModel wordModel;
-
-                wordModel = new WordModel(splitstr[0], splitstr[1]);
+                WordModel wordModel = new WordModel(splitstr[0], splitstr[1]);
                 wordModels.add(wordModel);
-            } while (line != null);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -15,4 +15,5 @@
     <string name="indonesia_to_english">Indonesia To English</string>
     <string name="english_to_indonesia">English To Indonesia</string>
     <string name="loading_text"><![CDATA[Memuat Kata Indonesia & Inggris]]></string>
+    <string name="failed_message">Gagal memuat data</string>
 </resources>

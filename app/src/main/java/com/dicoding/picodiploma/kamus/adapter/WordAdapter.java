@@ -51,7 +51,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 String word = listWord.get(i).getWord();
-                String description = listWord.get(i).getDescrition();
+                String description = listWord.get(i).getDescription();
                 WordModel wordModel = new WordModel(word,description);
                 Intent i = new Intent(context, DetailActivity.class);
                 i.putExtra("word",wordModel);
