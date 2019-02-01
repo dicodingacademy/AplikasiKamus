@@ -49,6 +49,11 @@ public class WordHelper {
             database.close();
     }
 
+    /***
+     * Gunakan method ini untuk mendapatkan semua data kata indo
+     *
+     * @return hasil query word model di dalam arraylist
+     */
     public ArrayList<WordModel> getAllData() {
         Cursor cursor = database.query(TABLE_INDO, null, null, null, null, null, _ID + " ASC", null);
         cursor.moveToFirst();
@@ -72,6 +77,11 @@ public class WordHelper {
         return arrayList;
     }
 
+    /***
+     * Gunakan method ini untuk mendapatkan semua data kata english
+     *
+     * @return hasil query word model di dalam arraylist
+     */
     public ArrayList<WordModel> getAllDataEng() {
         Cursor cursor = database.query(TABLE_ENGLISH, null, null, null, null, null, _ID + " ASC", null);
         cursor.moveToFirst();
@@ -95,18 +105,32 @@ public class WordHelper {
         return arrayList;
     }
 
+    /***
+     * Gunakan method ini untuk memulai sesi query transaction
+     */
     public void beginTransaction() {
         database.beginTransaction();
     }
 
+    /***
+     * Gunakan method ini jika query transaction berhasil, jika error jangan panggil method ini
+     */
     public void setTransactionSuccess() {
         database.setTransactionSuccessful();
     }
 
+    /***
+     * Gunakan method ini untuk mengakhiri sesi query transaction
+     */
     public void endTransaction() {
         database.endTransaction();
     }
 
+    /***
+     * Gunakan method ini untuk query insert IndoWord di dalam transaction
+     *
+     * @param wordModel inputan wordmodel
+     */
     public void insertTransaction(WordModel wordModel) {
         String sql = "INSERT INTO " + TABLE_INDO + " (" + WORD + ", " + DESCRIPTION
                 + ") VALUES (?, ?)";
@@ -117,6 +141,11 @@ public class WordHelper {
         stmt.clearBindings();
     }
 
+    /***
+     * Gunakan method ini untuk query insert EnglishWord di dalam transaction
+     *
+     * @param wordModel inputan wordmodel
+     */
     public void insertTransactionENG(WordModel wordModel) {
         String sql = "INSERT INTO " + TABLE_ENGLISH + " (" + WORD + ", " + DESCRIPTION
                 + ") VALUES (?, ?)";

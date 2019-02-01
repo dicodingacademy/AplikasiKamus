@@ -35,8 +35,18 @@ class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_ENGLISH);
     }
 
+    /***
+     *  Method onUpgrade akan di panggil ketika terjadi perbedaan versi
+     *  Gunakan method onUpgrade untuk melakukan proses migrasi data
+     * @param db
+     * @param i
+     * @param i1
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        /*
+        Drop table tidak dianjurkan ketika proses migrasi terjadi dikarenakan data user akan hilang,
+         */
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INDO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENGLISH);
         onCreate(db);

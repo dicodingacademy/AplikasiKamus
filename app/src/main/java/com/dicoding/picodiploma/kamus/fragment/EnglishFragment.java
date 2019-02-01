@@ -2,6 +2,7 @@ package com.dicoding.picodiploma.kamus.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +31,7 @@ public class EnglishFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_english, container, false);
@@ -39,6 +40,7 @@ public class EnglishFragment extends Fragment {
         EditText edt_english = view.findViewById(R.id.edt_english);
         final WordHelper wordHelper = new WordHelper(getActivity());
         final WordAdapter wordAdapter = new WordAdapter(getActivity());
+
         edt_english.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -62,7 +64,7 @@ public class EnglishFragment extends Fragment {
 
         wordHelper.open();
 
-        // Ambil semua data mahasiswa di database
+        // Ambil semua data Kamus English di database
         ArrayList<WordModel> wordModels = wordHelper.getAllDataEng();
 
         wordHelper.close();

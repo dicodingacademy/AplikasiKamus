@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
         unbindService(mServiceConnection);
     }
 
-    /*
-     Service Connection adalah interface yang digunakan untuk menghubungkan antara boundservice dengan activity
-      */
+    /***
+     * Service Connection adalah interface yang digunakan untuk menghubungkan antara boundservice dengan activity
+     */
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -113,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements HandlerCallback{
         }
 
         @Override
+
+
+
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case PREPARATION_MESSAGE:

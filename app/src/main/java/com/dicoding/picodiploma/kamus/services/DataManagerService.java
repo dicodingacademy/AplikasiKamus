@@ -37,6 +37,9 @@ public class DataManagerService extends Service {
         Log.d(TAG, "onCreate: ");
     }
 
+    /***
+     * Ketika semua ikatan sudah di lepas maka ondestroy akan secara otomatis dipanggil
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -44,6 +47,11 @@ public class DataManagerService extends Service {
         Log.d(TAG, "onDestroy: ");
     }
 
+    /***
+     * Method yang akan dipanggil ketika service diikatkan ke activity
+     * @param intent digunakan untuk getPareclableExtra
+     * @return menerima IBinder
+     */
     @Override
     public IBinder onBind(Intent intent) {
 
@@ -53,6 +61,11 @@ public class DataManagerService extends Service {
         return mActivityMessenger.getBinder();
     }
 
+    /***
+     * Method yang akan dipanggil ketika service dilepas dari activity
+     * @param intent digunakan sebagai argumen dalam method onUbind
+     * @return melepas service
+     */
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(TAG, "onUnbind: ");
@@ -60,6 +73,10 @@ public class DataManagerService extends Service {
         return super.onUnbind(intent);
     }
 
+    /***
+     * Method yang akan dipanggil ketika service diikatkan kembali
+     * @param intent digunakan sebagai argumen dalam method onRebind
+     */
     @Override
     public void onRebind(Intent intent) {
         super.onRebind(intent);

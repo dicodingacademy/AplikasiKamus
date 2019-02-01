@@ -2,17 +2,16 @@ package com.dicoding.picodiploma.kamus.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.dicoding.picodiploma.kamus.R;
 import com.dicoding.picodiploma.kamus.adapter.WordAdapter;
@@ -27,14 +26,12 @@ import java.util.ArrayList;
 public class IndoFragment extends Fragment {
 
     public IndoFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_indo, container, false);
         RecyclerView rv_indo = view.findViewById(R.id.rv_indo);
         EditText edt_indo = view.findViewById(R.id.edt_indo);
@@ -64,7 +61,7 @@ public class IndoFragment extends Fragment {
 
         wordHelper.open();
 
-        // Ambil semua data mahasiswa di database
+        // Ambil semua data Kamus Indo di database
         ArrayList<WordModel> wordModels = wordHelper.getAllData();
 
         wordHelper.close();

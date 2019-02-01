@@ -60,6 +60,10 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
         });
     }
 
+    /***
+     * Gunakan method ini untuk filtering Recyclerview
+     * @param text digunakan untuk mengirim kata yang akan di filter pada RecyclerView
+     */
     public void filter(String text) {
         listWord.clear();
         if(text.isEmpty()){
