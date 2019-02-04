@@ -3,6 +3,7 @@ package com.dicoding.picodiploma.kamus.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.dicoding.picodiploma.kamus.KamusActivity;
+import com.dicoding.picodiploma.kamus.MainActivity;
 import com.dicoding.picodiploma.kamus.R;
 import com.dicoding.picodiploma.kamus.adapter.WordAdapter;
 import com.dicoding.picodiploma.kamus.database.WordHelper;
@@ -30,14 +33,18 @@ public class IndonesiaFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_indonesia, container, false);
-        RecyclerView rvIndo = view.findViewById(R.id.rv_indo);
-        EditText etIndo = view.findViewById(R.id.edt_indo);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_indonesia, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView rvIndonesia = view.findViewById(R.id.rv_indo);
+        EditText etIndonesia = view.findViewById(R.id.edt_indo);
         WordHelper wordHelper = new WordHelper(getActivity());
         final WordAdapter wordAdapter = new WordAdapter(getActivity());
-        etIndo.addTextChangedListener(new TextWatcher() {
+        etIndonesia.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -55,9 +62,9 @@ public class IndonesiaFragment extends Fragment {
         });
 
 
-        rvIndo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvIndonesia.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rvIndo.setAdapter(wordAdapter);
+        rvIndonesia.setAdapter(wordAdapter);
 
         wordHelper.open();
 
@@ -67,7 +74,5 @@ public class IndonesiaFragment extends Fragment {
         wordHelper.close();
 
         wordAdapter.setData(wordModels);
-        return view;
     }
-
 }

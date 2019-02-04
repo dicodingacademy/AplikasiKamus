@@ -1,7 +1,7 @@
 package com.dicoding.picodiploma.kamus;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.dicoding.picodiploma.kamus.model.WordModel;
@@ -22,8 +22,9 @@ public class DetailActivity extends AppCompatActivity {
         tvWord.setText(wordModel.getWord());
         tvDescription.setText(wordModel.getDescription());
     }
+
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }

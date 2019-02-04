@@ -45,13 +45,13 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
-        holder.txtWord.setText(listWord.get(i).getWord());
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int i) {
+        holder.txtWord.setText(listWord.get(holder.getAdapterPosition()).getWord());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String word = listWord.get(i).getWord();
-                String description = listWord.get(i).getDescription();
+                String word = listWord.get(holder.getAdapterPosition()).getWord();
+                String description = listWord.get(holder.getAdapterPosition()).getDescription();
                 WordModel wordModel = new WordModel(word,description);
                 Intent i = new Intent(context, DetailActivity.class);
                 i.putExtra("word",wordModel);
